@@ -1,16 +1,30 @@
 #!/usr/bin/python3
 
+arr1 = []
+arr2 = []
+
 with open('input.txt', 'r') as f:
     lines = f.readlines()
-    total_diff = 0
     for l in lines:
-        arr = list(map(int, l.strip().split()))
-        
-        if arr[0] == arr[1]:
-            continue # adds 0 anyway
-        if arr[0] > arr[1]:
-            diff = arr[0] - arr[1]
-        if arr[0] < arr[1]:
-            diff = arr[1] - arr[0]
-        total_diff += diff
-    print(total_diff)
+        x, y = map(int, l.split())
+
+        arr1.append(x)
+        arr2.append(y)
+
+arr1.sort()
+arr2.sort()
+
+total_diff = 0
+
+i = 0
+while i < len(arr1):
+    diff = 0
+    if arr1[i] > arr2[i]:
+        diff = arr1[i] - arr2[i]
+    if arr1[i] < arr2[i]:
+        diff = arr2[i] - arr1[i]
+
+    total_diff += diff
+    i += 1
+
+print(total_diff)
